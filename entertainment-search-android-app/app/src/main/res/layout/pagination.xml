@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+
+    android:gravity="bottom">
+
+<Button
+    android:id="@+id/btn_prev"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentLeft="true"
+    android:text="@string/btn_prev_label"
+    android:layout_toLeftOf="@+id/space"
+    />
+<TextView
+    android:id="@id/space"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"/>
+<Button
+    android:id="@+id/btn_next"
+    android:text="@string/btn_next_label"
+    android:layout_toRightOf="@id/btn_prev"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@id/btn_next"
+    android:layout_alignParentRight="true"
+    />
+</RelativeLayout>

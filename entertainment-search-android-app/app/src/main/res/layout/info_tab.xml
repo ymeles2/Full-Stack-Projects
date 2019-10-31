@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/info_fragment"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:drawableLeft="@drawable/info_outline"
+    android:drawablePadding="10dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:text="@string/text_info"
+    android:singleLine="true"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+
+    android:textColor="#fff" />
+

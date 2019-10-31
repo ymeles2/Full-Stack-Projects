@@ -1,0 +1,21 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_gravity="left"
+    android:layout_height="match_parent"
+    android:layout_width="wrap_content">
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="60dp"
+        android:orientation="vertical"
+        android:id="@+id/photos_container"
+        tools:context="entertainment.search.placessearch.DetailsActivity">
+
+    </LinearLayout>
+</ScrollView>
