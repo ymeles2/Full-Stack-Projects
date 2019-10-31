@@ -1,0 +1,254 @@
+/*Author: Bizuwork Melesse
+Class: USC CS571 - Spring 2018
+Assignment: 3*/
+
+html, body {
+
+	font-family:  Helvetica, Sans-Serif;
+	font-size: 13px;
+	color: #605e5e; 
+	width: 1200px;
+	margin-left: 0px;
+
+}
+p {
+	line-height: 16px;
+}
+
+
+.container {
+	
+	margin: 0 auto;
+	background-color: #fff;
+}
+.row.top {
+	background-image: url("http://cs-server.uiuc.edu:45678/hw/hw3/images/image6.jpg") !important;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-size: 1880px 1180px;
+	background-position-y: 30px;
+	background-position-x: -340px;
+	height: 880px;
+}
+.address {
+	padding-top: 20px;
+	padding-left: 100px;
+
+}
+.business-name h1 {
+	text-align: center;
+	text-transform: uppercase;
+	padding-top: 5px;
+	padding-bottom: 40px;
+	color: #bc9b5d;
+	font-weight: 500;
+	letter-spacing: 5px;
+
+}
+.navigation-top-horizontal {
+	border-top: 1px solid #e9e9e9;
+	margin-top: -20px;
+}
+.navigation-top-horizontal table {
+	min-width: 100%;
+}
+td{
+	width: 20%;
+	text-align: center;
+	padding-top: 6px;
+	padding-bottom: 6px;
+}
+
+.row.middle {
+	display: inline-flex;
+}
+.container.left {
+	display: table-cell;
+	width: 40%;
+	padding-top: 110px;
+	padding-left: 170px !important;
+}
+.container.right {
+	display: table-cell;
+	padding-top: 30px;
+	padding-left: 90px !important;
+	padding-bottom: 20px;
+}
+.container.bottom {
+	
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	width: 100%;
+	
+	padding-bottom: 40px;
+	margin-top: -20px;
+}
+
+.container.bottom.footer {
+	
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+	width: 100%;
+	margin-left: 0px;
+	padding-bottom: 50px;
+	margin-top: 5px;
+
+	line-height: 14px;
+	padding-top: 25px;
+	color: #fff;
+	font-weight: 500;
+	font-size: 12px;
+	height: 132px;
+	background-color: #bc9b5d;
+	
+}
+.left img, .right img {
+	float: left;
+	max-width: 400px;
+	padding-bottom: 50px;
+}
+.right .background-info span {
+	text-transform: uppercase;
+	font-size: 12px;
+
+}
+.right .background-info {
+	max-width: 272px;
+	padding-bottom: 60px;
+}
+.left .background-info {
+	max-width: 340px;
+	padding-top: 60px;
+}
+.left-bottom-img {
+	padding-bottom: 80px !important;
+}
+ .container h2 {
+	font-family: 'EB Garamond', serif;
+	color: #bc9b5d;
+	font-style: italic;
+	font-size: 34px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	line-height: 36px;
+	font-weight: 600;
+
+}
+.left-bottom-msg {
+	width: 220px;
+}
+.right .background-info h2 {
+	margin-top: 10px !important;
+}
+.read-more h6 {
+	font-size: 12px;
+	font-weight: inherit;
+	margin-top: 8px;
+	
+}
+.read-more a {
+	color: #000;
+}
+.background-offset {
+	height: 600px;
+}
+
+.container.bottom.order-now {
+	background-image: url("http://cs-server.uiuc.edu:45678/hw/hw3/images/image7.jpg") !important;
+	background-repeat: no-repeat;
+	background-position-x: 72px;
+	background-position-y: 40px;
+	height: 600px;
+}
+.order-now {
+	margin-left: 95px;
+	width: 80% !important;
+}
+.wrapper .top,  .wrapper .bottom, .container,  {
+	display: block;
+}
+.call-to-action {
+	background-color: #fff;
+	text-align: center;
+	line-height: 0px;
+	padding-top: 35px;
+	padding-bottom: 20px;
+}
+.call-to-action span {
+	text-transform: uppercase;
+	font-size: 9px;
+	letter-spacing: 0.5px;
+}
+.call-to-action h3 {
+	font-size: 25px;
+	font-family: 'EB Garamond', serif;
+	color: #565656;
+	font-weight: 500;
+}
+.order-online {
+	width: 35%;
+	padding-top: 25%;
+	margin: 0 auto;
+}
+.testimonial {
+	text-align: center;
+}
+.testimonial h2 {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-left: 18%;
+	padding-right: 15%;
+}
+.testimonial-site {
+	padding: 10px;
+}
+.container.bottom.testimonial {
+	background-image: none;
+	height: auto;
+	padding-bottom: 70px;
+	padding-top: 25px;
+}
+.copyright {
+	width: 28%;
+	float: right;
+}
+.container.bottom.offset {
+	margin-bottom: 440px;
+	
+}
+
+.testimonial p {
+	font-size: 11px;
+}
+.row.bottom {
+	background-image: url("http://cs-server.uiuc.edu:45678/hw/hw3/images/image5.jpg") !important;
+	background-size: 1200px 1220px;
+	background-repeat: no-repeat !important;
+	background-attachment: fixed;
+	height: 540px;
+}
+.footer-offset {
+	padding-bottom: 40px;
+	background: #fff;
+	margin-top: 180px;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+h3:hover,  .read-more a:hover {
+	color: #ababab !important;
+}
+.home-link {
+	color: #bc9b5d;
+}
+
+.wrapper.nav-items{
+	font-weight: 700;
+	font-size: 30px;
+	font-family: "Times New Roman";
+	color: #000;
+	line-height: 24px;
+	padding-left: 15px;
+}
