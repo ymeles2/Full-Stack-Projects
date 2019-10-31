@@ -1,0 +1,30 @@
+Total: 4.35
+Expected: 4.35
+
+Payment given: Change[dollars=5,quarters=0,dimes=0,nickels=0,pennies=0]
+Change[dollars=0,quarters=2,dimes=1,nickels=1,pennies=0]
+Change total: 0.65
+Expected: 0.65
+
+Total: 0.75
+Expected: 0.75
+
+Total: 2.25
+Expected: 2.25
+
+Payment given: Change[dollars=2,quarters=0,dimes=5,nickels=0,pennies=0]
+Change[dollars=0,quarters=1,dimes=0,nickels=0,pennies=0]
+Change total: 0.25
+Expected: 0.25
+
+Total: 2.25
+Expected: 2.25
+
+Total: 21.5
+Expected: 21.5
+
+Payment given: Change[dollars=23,quarters=2,dimes=0,nickels=0,pennies=0]
+Change[dollars=2,quarters=0,dimes=0,nickels=0,pennies=0]
+Change total: 2.0
+Expected: 2.0
+
