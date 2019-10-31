@@ -1,0 +1,215 @@
+<!-- Author: Bizuwork Melesse
+Class: USC CS571 - Spring 2018
+Assignment: 4 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Trucking Companies</title>
+	<style>
+	.input-box {
+			margin: 0 auto;
+			text-align: center;
+			margin-top: 150px;
+			margin-bottom: 60px;
+		}
+	.box {
+		margin-top: 40px;
+		margin-bottom: 30px;
+	}
+	.button {
+		
+		margin: 0 auto;
+    	padding-top: 25px;
+	}
+	input {
+		padding: 5px;
+	}
+	
+	</style>
+
+
+	<script>
+
+	
+
+	function writeHeader(header, newWin, footer) {
+
+		if (footer) {
+			newWin.document.write("</table></body></html>");
+		}
+		else {
+
+			newWin.document.write("\
+				<!DOCTYPE html>\
+				<html><head>\
+				<style>\
+					.row-header {\
+						text-align: center;\
+					}\
+					table, td, th {\
+						border: 1px solid #000;\
+						font-size: 20px;\
+						padding-left: 5px;\
+	   				}\
+	   				table { \
+	   					border-collapse: collapse;\
+	   				}\
+	   				img {\
+	   					width: 250px;\
+	   				}\
+				</style>\
+				</head><body><table>");
+
+			
+
+			newWin.document.write("<tr>");
+			for (index in header) {
+				newWin.document.write("<td class=\"row-header\"><strong>" + header[index] + "</strong></td>");
+			}
+			newWin.document.write("</tr>");
+			
+		}
+	}
+
+	function writeRows(rows, newWin) {
+
+		for (index in rows) {
+
+			newWin.document.write("<tr>");
+
+			var row = rows[index];
+			var hubs = row["Hubs"]["Hub"];
+
+			newWin.document.write("<td>"+row["Company"]+"</td>");
+			newWin.document.write("<td>"+row["Services"]+"</td>");
+
+			newWin.document.write("<td>");
+			for (i in hubs) {
+				newWin.document.write("<ul>");
+					if (i == 0) {
+
+						newWin.document.write("<li><strong>"+hubs[i]+"</strong></li>");
+					}
+					else {
+
+						newWin.document.write("<li>"+hubs[i]+"</li>");
+					}
+				newWin.document.write("</ul>");
+			}
+			newWin.document.write("</td>");
+
+			newWin.document.write("<td>"+row["Revenue"]+"</td>");
+			newWin.document.write("<td><a href=\""+row["HomePage"]+"\">"+row["HomePage"]+"</a></td>");
+			newWin.document.write("<td> <img src=\""+row["Logo"]+"\"></td>");
+
+			newWin.document.write("</tr>");
+
+		}
+
+	} 
+
+	function writeFile(jsonDoc) {
+
+		var jsonObj, header, rows;
+		try {
+			jsonObj = JSON.parse(jsonDoc);
+		}
+		catch(err) {
+			alert("Invalid File Format: Failed to parse JSON content");
+			return;
+		}
+		 
+		try {
+			header = jsonObj.Mainline.Table.Header.Data;
+			rows = jsonObj.Mainline.Table.Row;
+
+			if (rows == undefined) {
+				alert("Error: No Trucking Companies Found");
+			}
+
+			else {
+
+				var newWin = window.open();
+				writeHeader(header, newWin, false);
+				writeRows(rows, newWin);
+				writeHeader(header, newWin, true);
+			}
+		}
+		catch(err) {
+			alert("Error: Malformed JSON File");
+		}
+	}
+
+
+	function loadJSON (url) {
+
+		var jsonDoc;
+		var xmlhttp=new XMLHttpRequest();
+		
+		
+		xmlhttp.open("GET", url, false);
+		try {
+
+			xmlhttp.send();
+			jsonDoc=xmlhttp.responseText;
+			if (xmlhttp.status == 404) throw "";
+			return jsonDoc;
+		}
+
+		catch(err) {
+			throw("Error: No Such File Found");
+		}
+	}
+
+	function parseJSON() {
+
+		var url = parseFileName();
+
+		if (url.length == 0) {
+
+			alert("Error: Must provide a file name");
+		}
+		else {
+
+			try {
+				var jsonDoc = loadJSON(url);
+				writeFile(jsonDoc);
+			}
+			catch(err) {
+				alert(err);
+			}
+			
+			
+		}
+
+	}
+	function parseFileName() {
+
+		var text = document.getElementById("form1");
+		var url = "";
+	    var i;
+
+	    for (i = 0; i < text.length ;i++) {
+	        url += text.elements[i].value;
+   		}
+   		return url;
+
+	}
+	</script>
+
+</head>
+
+<body>
+
+	<div class="input-box">
+	<h1>Enter URL for Trucking List JSON File</h1>
+
+	<form action="" id="form1">
+		<div class="box"><input type="text"></div>
+		<button onclick="parseJSON()">Submit Query</button>
+</form>
+</div>
+
+</body>`
+</html>
