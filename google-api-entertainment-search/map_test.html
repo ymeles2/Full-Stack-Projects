@@ -1,0 +1,221 @@
+<html>
+ <head>
+ <title>Travel and Entertainment Search</title>
+ <meta http-equiv="Content-Type" content="text/html;
+charset=ISO-8859-1">
+ </head>
+ <style>
+ .address-text {
+ 	display: block;
+ }
+ .google-maps {
+ 	position: absolute;
+ 	z-index: 0;
+ 	/*top: 0;*/
+ }
+ .parent {
+ 	position: relative
+ }
+ a {text-decoration: none; color:#000;}
+ .mode-of-travel {
+	width: 85px;
+	background: #e0e0e0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	line-height: 35px;
+	padding-left: 5px;
+	display: none;
+	position: absolute;
+	z-index: 5;
+ }
+ </style>
+
+ <body>
+ <div class="parent">
+<span class="address-text" data-clicked="false"><a href="#" onclick="preInitMap('1')">634 W 27 Street</span>
+<div class="map-display">
+<div class="mode-of-travel" id="mode-of-travel-1">
+	<span id="walk-1" onclick="transMode('walk-1')" data-clicked="false">Walk there</span><br>
+	<span id="bike-1" onclick="transMode('bike-1')" data-clicked="false">Bike there</span><br>
+	<span id="drive-1" onclick="transMode('drive-1')" data-clicked="false">Drive there</span>
+</div>
+<div class="google-maps" id="map-1" onclick="preInitMap('1')"></div>
+</div>
+
+<!-- <span class="address-text" data-clicked="false"><a href="#" onclick="preInitMap('2')">634 W 27 Street StreetStreet Street Street Street Street Street Street Street 634 W 27 Street StreetStreet Street Street Street Street </span></a> 
+<div class="map-display">
+<div class="mode-of-travel" id="mode-of-travel-2">
+	<span id="walk-2"><a>Walk there</a></span><br>
+	<span id="bike-2"><a href="">Bike there</a></span><br>
+	<span id="drive-2"><a href="">Drive there</a></span>
+</div>
+<div class="google-maps" id="map-2" onclick="preInitMap('2')"></div>
+</div>
+
+
+<span class="address-text" data-clicked="false"><a href="#" onclick="preInitMap('3')">634 W 27 Street StreetStreet Street Street Street Street Street Street Street 634 W 27 Street StreetStreet Street Street Street Street </span></a> 
+<div class="map-display">
+<div class="mode-of-travel" id="mode-of-travel-3">
+	<span id="walk-3"><a>Walk there</a></span><br>
+	<span id="bike-3"><a href="">Bike there</a></span><br>
+	<span id="drive-3"><a href="">Drive there</a></span>
+</div>
+<div class="google-maps" id="map-3" onclick="preInitMap('3')"></div>
+</div> -->
+ </body>
+ <script>
+
+var lastClickedID = -1;
+var travelModeClickedID = -1;
+var travelModeRequested = false;
+var mapInstance;
+
+function transMode(mode) {
+
+	// if travel mode is clicked for the first time, set it to clicked and 
+	// request a new direction map; otherwise, do nothing, i.e. don't make 
+	// unecessary api calls
+	// console.log("in transMode");
+	
+	// console.log(mode);
+	var MODE, id, modeName;
+	var modeArr = mode.split('-');
+	modeName = modeArr[0];
+	id = modeArr[1];
+
+	travelModeClickedID = -1;
+
+	// reset the canvas to marker map before drawing a new directed map
+	preInitMap(id);
+	displayModal(id);
+
+	var modeElem = document.getElementById(mode);
+	// THE IF-else block is for reset the drawing upon even-numbered clicks
+	// if (modeElem.getAttribute("data-clicked") == "false") {
+		// modeElem.setAttribute("data-clicked", "true");
+		// modeElem.setAttribute("data-clicked", "true");
+		lastClickedID = id;
+
+		if (modeName == 'walk') MODE = "WALKING";
+		else if (modeName == 'drive') MODE = "DRIVING";
+		else if (modeName == 'bike') MODE = "BICYCLING";
+
+		travelModeClickedID = id;
+		travelModeRequested = true;
+		directedMap(MODE);
+		displayModal(id);
+		travelModeRequested = false;
+
+
+}
+
+ function displayModal(id) {
+ 	
+ 	// console.log("in displayModal");
+ 	var mapDisplay = document.getElementById('map-' + id);
+ 	// DO NOT reset the modal window if travel mode drawing is requestd
+ 	if (mapDisplay.getAttribute("data-clicked") == "true") {
+ 		mapDisplay.style.display = "none";
+ 		mapDisplay.style.width = "0";
+		mapDisplay.style.height = "0";
+ 		mapDisplay.setAttribute("data-clicked", "false");
+ 		document.getElementById("mode-of-travel-"+id).style.display = "none";
+ 		// console.log("setting attr to false");
+
+ 		// If modal closure is requested, reset the canvas to its initial state
+ 		// in case the user clicks on it again
+ 		if (travelModeRequested == false) {
+ 			lastClickedID = id;
+ 			initMap();
+ 		}
+ 		
+ 	}
+ 	else {
+ 		// console.log("setting attr to true");
+ 		mapDisplay.style.display = "block";
+ 		mapDisplay.setAttribute("data-clicked", "true"); //= true;
+ 		mapDisplay.style.width = "350px";
+		mapDisplay.style.height = "350px";
+		// mapDisplay.style.background = "green"
+		document.getElementById("mode-of-travel-"+id).style.display = "block";
+
+	 
+ 	}
+ 	// directedMap('WALKING');
+ 	// console.log("about to sleep");
+ 	// setTimeout(directedMap('WALKING'), 15000);
+ // console.log("exiting displayModal");	
+ }
+
+function preInitMap(id) {
+	
+	lastClickedID = id;
+	if (travelModeClickedID != lastClickedID) initMap();
+	displayModal(id);
+	
+
+	// console.log("exiting preInitMap");
+}
+ function initMap() {
+ 	// console.log("in initMap");
+ 	// console.log(lastClickedID);
+ 	if (lastClickedID > -1) {
+	  var uluru = {lat: 34.0228857, lng: -118.2870926};
+	  mapInstance = new google.maps.Map(document.getElementById('map-'+lastClickedID), {
+	    zoom: 15,
+	    center: uluru
+	  });
+	  var marker = new google.maps.Marker({
+	    position: uluru,
+	    map: mapInstance
+	  });
+	}
+	// console.log("map has been initialized for id: map-"+lastClickedID);
+	// console.log("exiting initMap");
+}
+ 	function directedMap(mode) {
+ 		// console.log("in directedMap");
+ 		var elemID = 'map-'+lastClickedID;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var directionsService = new google.maps.DirectionsService;
+        // document.getElementById(elemID).innerHTML = "";
+        // var map = new google.maps.Map(document.getElementById(elemID), {
+        //   zoom: 14,
+        //   center: {lat: 37.77, lng: -122.447}
+        // });
+        directionsDisplay.setMap(mapInstance);
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay, mode);
+        // document.getElementById(elemID).addEventListener('change', function() {
+        //   calculateAndDisplayRoute(directionsService, directionsDisplay);
+        // });
+        // console.log("directed has been drawn for id: " + elemID);
+        // console.log("exiting directedMap");
+      }
+
+      function calculateAndDisplayRoute(directionsService, directionsDisplay, mode) {
+      	// console.log("in calculateAndDisplayRoute");
+        var selectedMode = mode; //document.getElementById('mode').value;
+        directionsService.route({
+          origin: {lat: 37.77, lng: -122.447},  // Haight.
+          destination: {lat: 37.768, lng: -122.511},  // Ocean Beach.
+          // Note that Javascript allows us to access the constant
+          // using square brackets and a string value as its
+          // "property."
+          travelMode: google.maps.TravelMode[selectedMode]
+        }, function(response, status) {
+          if (status == 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
+          }
+        });
+        // console.log("exiting calculateAndDisplayRoute");
+      }
+
+
+ </script>
+ <script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_NhluopOgKm1DhlpxCZebkdwgPqOfItQ&callback=initMap">
+</script>
+  </html>

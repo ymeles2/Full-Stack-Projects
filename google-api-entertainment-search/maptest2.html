@@ -1,0 +1,140 @@
+<html>
+ <head>
+ <title>Travel and Entertainment Search</title>
+ <meta http-equiv="Content-Type" content="text/html;
+charset=ISO-8859-1">
+ </head>
+ <style>
+ .address-text {
+ 	display: block;
+ }
+ .google-maps {
+ 	position: absolute;
+ 	z-index: 0;
+ 	/*top: 0;*/
+ }
+ .parent {
+ 	position: relative
+ }
+ a {text-decoration: none; color:#000;}
+ .mode-of-travel {
+	width: 85px;
+	background: #e0e0e0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	line-height: 35px;
+	padding-left: 5px;
+	display: none;
+	position: absolute;
+	z-index: 5;
+ }
+ </style>
+
+ <body>
+ <div class="parent">
+<span class="address-text" data-clicked="false"><a href="#" onclick="initMap()">634 W 27 Street</span>
+<div class="map-display">
+<div class="mode-of-travel" id="mode-of-travel-1">
+	<span id="walk-1" onclick="transMode('walk-1')" data-clicked="false">Walk there</span><br>
+	<span id="bike-1" onclick="transMode('bike-1')" data-clicked="false">Bike there</span><br>
+	<span id="drive-1" onclick="transMode('drive-1')" data-clicked="false">Drive there</span>
+</div>
+<div class="google-maps" id="map-1" onclick="initMap()"></div>
+</div>
+
+<span class="address-text" data-clicked="false"><a href="#" onclick="preInitMap('2')">634 W 27 Street StreetStreet Street Street Street Street Street Street Street 634 W 27 Street StreetStreet Street Street Street Street </span></a> 
+<div class="map-display">
+<div class="mode-of-travel" id="mode-of-travel-2">
+	<span id="walk-2"><a>Walk there</a></span><br>
+	<span id="bike-2"><a href="">Bike there</a></span><br>
+	<span id="drive-2"><a href="">Drive there</a></span>
+</div>
+<div class="google-maps" id="map-2" onclick="preInitMap('2')"></div>
+</div>
+
+
+<span class="address-text" data-clicked="false"><a href="#" onclick="preInitMap('3')">634 W 27 Street StreetStreet Street Street Street Street Street Street Street 634 W 27 Street StreetStreet Street Street Street Street </span></a> 
+<div class="map-display">
+<div class="mode-of-travel" id="mode-of-travel-3">
+	<span id="walk-3"><a>Walk there</a></span><br>
+	<span id="bike-3"><a href="">Bike there</a></span><br>
+	<span id="drive-3"><a href="">Drive there</a></span>
+</div>
+<div class="google-maps" id="map-3" onclick="preInitMap('3')"></div>
+</div>
+ </body>
+ <script>
+
+// var lastClickedID = -1;
+// var travelModeClickedID = -1;
+// var travelModeRequested = false;
+var mapInstance;
+
+
+
+ // function displayModal(id) {
+ 	
+ // 	// console.log("in displayModal");
+ // 	var mapDisplay = document.getElementById('map-' + id);
+ // 	// DO NOT reset the modal window if travel mode drawing is requestd
+ // 	if (mapDisplay.getAttribute("data-clicked") == "true") {
+ // 		mapDisplay.style.display = "none";
+ // 		mapDisplay.style.width = "0";
+	// 	mapDisplay.style.height = "0";
+ // 		mapDisplay.setAttribute("data-clicked", "false");
+ // 		document.getElementById("mode-of-travel-"+id).style.display = "none";
+ // 		// console.log("setting attr to false");
+
+ // 		// If modal closure is requested, reset the canvas to its initial state
+ // 		// in case the user clicks on it again
+ // 		if (travelModeRequested == false) {
+ // 			lastClickedID = id;
+ // 			initMap();
+ // 		}
+ 		
+ // 	}
+ // 	else {
+ // 		// console.log("setting attr to true");
+ // 		mapDisplay.style.display = "block";
+ // 		mapDisplay.setAttribute("data-clicked", "true"); //= true;
+ // 		mapDisplay.style.width = "350px";
+	// 	mapDisplay.style.height = "350px";
+	// 	// mapDisplay.style.background = "green"
+	// 	document.getElementById("mode-of-travel-"+id).style.display = "block";
+
+	 
+ // 	}
+ 		
+ // }
+
+// function preInitMap(id) {
+	
+// 	lastClickedID = id;
+// 	if (travelModeClickedID != lastClickedID) initMap();
+// 	displayModal(id);
+	
+
+// 	// console.log("exiting preInitMap");
+// }
+ function initMap() {
+ 	
+	  var uluru = {lat: 34.0228857, lng: -118.2870926};
+	  mapInstance = new google.maps.Map(document.getElementById('map-'+1), {
+	    zoom: 15,
+	    center: uluru
+	  });
+	  var marker = new google.maps.Marker({
+	    position: uluru,
+	    map: mapInstance
+	  });
+	
+
+}
+ 
+
+
+ </script>
+ <script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_NhluopOgKm1DhlpxCZebkdwgPqOfItQ&callback=initMap">
+</script>
+  </html>

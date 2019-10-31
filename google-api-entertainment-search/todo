@@ -1,0 +1,6 @@
+1. use place_id and api key to retrieve places detail info
+	i. on the server side:
+		-parse the json and get photo references
+		-use photo reference, maxheight and maxwidth, and api key to request five high res images
+		-save the images on the server
+	ii. pass the resulting review json and images to the client and populate the page
