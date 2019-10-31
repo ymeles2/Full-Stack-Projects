@@ -1,0 +1,29 @@
+populating taxonomy models:
+1. transfer raw and abridged files to the db
+2. call taxonomy_mapper on abridged google
+3. call taxonomy.populate_product_taxonomy()
+4. call taxonomy.populate_top_levels()
+5. call search.populate_slug_table() # these are found in their respective helper function
+6. bulk index
+
+
+* if any changes/updates made to the product model, the article model needs to be iterated and saved to update the es index
+
+
+
+during dev:
+1. after populating ProductTaxonomy, populate Product model in fooreviews
+2. then populate Article with a random Product object
+
+-populate Selector table 
+
+-be able to get canonical_url automtically, except for Sears
+
+
+running rq:
+nohup python manage.py rqworker high default low &
+
+
+delete duplicate db objects by field name:
+for rev in models.ReviewRaw.objects.values_list('review_body', flat=True).distinct():
+	 models.ReviewRaw.objects.filter(pk__in=models.ReviewRaw.objects.filter(review_body=rev).values_list('id', flat=True)[1:]).delete()
